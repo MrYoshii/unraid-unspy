@@ -18,62 +18,62 @@
 
   <FILE Name="&plugdir;/unspy.page">
     <![CDATA[
-      <?xml version='1.0' encoding='utf-8'?>
-      <Page>
-        <Title>Unspy</Title>
-        <Menu>Settings</Menu>
-        <Content>
-          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-          <h2>System Overview (Demo)</h2>
-          <canvas id="cpuChart" width="600" height="200"></canvas>
-          <script>
-            const ctx = document.getElementById('cpuChart').getContext('2d');
-            const cpuChart = new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['0s', '10s', '20s', '30s'],
-                datasets: [{
-                  label: 'CPU Usage %',
-                  data: [10, 20, 15, 25],
-                  borderWidth: 2
-                }]
-              },
-              options: {
-                scales: {
-                  y: { beginAtZero: true }
-                }
-              }
-            });
-          </script>
-        </Content>
-      </Page>
+<?xml version='1.0' encoding='utf-8'?>
+<Page>
+  <Title>Unspy</Title>
+  <Menu>Settings</Menu>
+  <Content>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <h2>System Overview (Demo)</h2>
+    <canvas id="cpuChart" width="600" height="200"></canvas>
+    <script>
+      const ctx = document.getElementById('cpuChart').getContext('2d');
+      const cpuChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['0s', '10s', '20s', '30s'],
+          datasets: [{
+            label: 'CPU Usage %',
+            data: [10, 20, 15, 25],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    </script>
+  </Content>
+</Page>
     ]]>
   </FILE>
 
   <FILE Name="/boot/config/plugins/&name;/settings.cfg">
     <![CDATA[
-      # Config settings
-      db_mode=sqlite
+# Config settings
+db_mode=sqlite
     ]]>
   </FILE>
 
   <FILE Name="/usr/local/emhttp/plugins/&name;/scripts/log_stats.sh" Mode="0755">
     <![CDATA[
-      #!/bin/bash
-      LOG_DIR="/mnt/user/appdata/unspy/logs"
-      mkdir -p "$LOG_DIR"
-      CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
-      MEM=$(free | awk '/Mem:/ { printf("%.2f", $3/$2 * 100.0) }')
-      NET=$(cat /proc/net/dev | grep eth0 | awk '{print $2":"$10}')
-      echo "$(date +%s),$CPU,$MEM,$NET" >> "$LOG_DIR/stats.csv"
+#!/bin/bash
+LOG_DIR="/mnt/user/appdata/unspy/logs"
+mkdir -p "$LOG_DIR"
+CPU=$(top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+MEM=$(free | awk '/Mem:/ { printf("%.2f", $3/$2 * 100.0) }')
+NET=$(cat /proc/net/dev | grep eth0 | awk '{print $2":"$10}')
+echo "$(date +%s),$CPU,$MEM,$NET" >> "$LOG_DIR/stats.csv"
     ]]>
   </FILE>
 
   <FILE Run="install">
     <![CDATA[
-      mkdir -p &plugdir;/scripts
-      cp /usr/local/emhttp/plugins/&name;/scripts/log_stats.sh /etc/cron.hourly/log_stats
-      chmod +x /etc/cron.hourly/log_stats
+mkdir -p &plugdir;/scripts
+cp /usr/local/emhttp/plugins/&name;/scripts/log_stats.sh /etc/cron.hourly/log_stats
+chmod +x /etc/cron.hourly/log_stats
     ]]>
   </FILE>
 </PLUGIN>
