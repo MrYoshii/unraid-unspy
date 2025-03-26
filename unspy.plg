@@ -14,27 +14,27 @@
 
   <CHANGES>
   ### &version;
-  - Initial txz-based installer using scrubber-style layout
+  - Added persistent Unspy.page to enable top-level UnSPY menu entry
   </CHANGES>
 
+  <!-- Clean up old versions -->
   <FILE Run="/bin/bash">
   <INLINE>
   rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
   </INLINE>
   </FILE>
 
+  <!-- Install current TXZ -->
   <FILE Name="&plugin;/&name;-&version;.txz" Run="upgradepkg --install-new">
     <URL>&gitURL;/&name;-&version;.txz</URL>
   </FILE>
 
+  <!-- Plugin uninstall clean-up -->
   <FILE Run="/bin/bash" Method="remove">
   <INLINE>
-  # Entferne Plugin-Dateien
-  rm -rf /usr/local/emhttp/plugins/unspy
-  rm -rf /boot/config/plugins/unspy
-
-  # Entferne Systempaket (falls registriert)
-  removepkg unspy 2>/dev/null || true
+  rm -rf /usr/local/emhttp/plugins/&name;
+  rm -rf /boot/config/plugins/&name;
+  removepkg &name; 2>/dev/null || true
   </INLINE>
   </FILE>
 
