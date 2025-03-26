@@ -1,8 +1,0 @@
-{
-  "name": "Unspy",
-  "version": "0.1",
-  "author": "MrYoshii & CodeGoblin",
-  "launch": "Settings/Unspy",
-  "category": "settings",
-  "icon": "area-chart"
-}

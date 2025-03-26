@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?>
+<PLUGIN name="unspy" author="MrYoshii & CodeGoblin" version="0.1" pluginURL="https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/unspy.plg" min="6.12.0" icon="area-chart" support="https://github.com/MrYoshii/unraid-unspy">
+
+  <FILE Name="/tmp/unspy.txz" Run="installpkg">
+    <URL>https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/unspy.txz</URL>
+  </FILE>
+
+</PLUGIN>
