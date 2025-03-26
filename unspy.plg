@@ -14,7 +14,7 @@
 
   <CHANGES>
   ### &version;
-  - Added persistent Unspy.page to enable top-level UnSPY menu entry
+  - Install ZIP package instead of TXZ; updated unzip command with quotes.
   </CHANGES>
 
   <!-- Clean up old versions -->
@@ -24,11 +24,11 @@
   </INLINE>
   </FILE>
 
-  <!-- Install current ZIP -->
+  <!-- Install current ZIP with quoted path -->
   <FILE Name="&plugin;/&name;-&version;.zip" Run="/bin/bash">
-  <INLINE>
-  unzip -o &plugin;/&name;-&version;.zip -d /
-  </INLINE>
+    <INLINE>
+    unzip -o "&plugin;/&name;-&version;.zip" -d /
+    </INLINE>
     <URL>&gitURL;/&name;-&version;.zip</URL>
   </FILE>
 
