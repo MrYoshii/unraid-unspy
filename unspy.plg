@@ -4,7 +4,7 @@
   <!ENTITY author "MrYoshii & CodeGoblin">
   <!ENTITY version "0.1">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/unspy.plg">
-  <!ENTITY plugdir "/usr/local/emhttp/plugins/&name;">
+  <!ENTITY plugdir "/usr/local/emhttp/plugins/unspy">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.12.0" icon="area-chart" support="https://github.com/MrYoshii/unraid-unspy">
 
