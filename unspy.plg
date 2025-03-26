@@ -34,7 +34,8 @@
   <INLINE>
   rm -rf /usr/local/emhttp/plugins/&name;
   rm -rf /boot/config/plugins/&name;
-  removepkg &name; 2>/dev/null || true
+  removepkg &name;-&version; 2>/dev/null || true
+
   </INLINE>
   </FILE>
 
