@@ -1,0 +1,16 @@
+<?php
+echo "<head><script>
+function fetchStats() {
+  fetch('/plugins/unspy/scripts/stats.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('stats-output').innerHTML = data;
+    });
+}
+setInterval(fetchStats, 3000);
+window.onload = fetchStats;
+</script></head>";
+
+echo "<h2 style='margin-top: 20px;'>📊 Unspy System Dashboard</h2>";
+echo "<div id='stats-output' style='font-size:18px;padding:10px'><em>Loading stats...</em></div>";
+?>

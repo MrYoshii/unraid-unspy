@@ -1,0 +1,9 @@
+Menu="Tools"
+Title="UnSPY"
+Icon="area-chart"
+URL="/Tools/Unspy"
+Desc="Unleash the inner metrics – UnSPY everything"
+---
+<?php
+// Keine weitere Logik, nur der Button-Eintrag
+?>

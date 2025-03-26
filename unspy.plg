@@ -14,35 +14,28 @@
 
   <CHANGES>
   ### &version;
-  - Updated installer: ZIP is downloaded separately, unzip command is run via an external script.
+  - Initial TXZ-based installer using scrubber-style layout
   </CHANGES>
 
-  <!-- Clean up old ZIPs -->
+  <!-- Clean up old versions -->
   <FILE Run="/bin/bash">
-  <INLINE>
-  rm -f $(ls &plugin;/&name;-*.zip 2>/dev/null | grep -v '&version;')
-  </INLINE>
+    <![CDATA[
+      rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
+    ]]>
   </FILE>
 
-  <!-- Download current ZIP file (without executing it) -->
-  <FILE Name="&plugin;/&name;-&version;.zip">
-    <URL>&gitURL;/&name;-&version;.zip</URL>
-  </FILE>
-
-  <!-- Run the unzip command using a separate script -->
-  <FILE Name="/tmp/unspy_install.sh" Run="/bin/bash">
-  <INLINE>
-  cd / && unzip -o "&plugin;/&name;-&version;.zip" -d /
-  </INLINE>
+  <!-- Install current TXZ -->
+  <FILE Name="&plugin;/&name;-&version;.txz" Run="upgradepkg --install-new">
+    <URL>&gitURL;/&name;-&version;.txz</URL>
   </FILE>
 
   <!-- Plugin uninstall clean-up -->
   <FILE Run="/bin/bash" Method="remove">
-  <INLINE>
-  rm -rf /usr/local/emhttp/plugins/&name;
-  rm -rf /boot/config/plugins/&name;
-  removepkg &name;-&version; 2>/dev/null || true
-  </INLINE>
+    <![CDATA[
+      rm -rf /usr/local/emhttp/plugins/&name;
+      rm -rf /boot/config/plugins/&name;
+      removepkg &name;-&version; 2>/dev/null || true
+    ]]>
   </FILE>
 
 </PLUGIN>
