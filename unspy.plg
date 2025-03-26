@@ -1,0 +1,28 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name "unspy">
+  <!ENTITY author "MrYoshii & CodeGoblin">
+  <!ENTITY version "0.1">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/unspy.plg">
+  <!ENTITY plugdir "/usr/local/emhttp/plugins/&name;">
+]>
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="6.12.0" icon="area-chart" support="https://github.com/MrYoshii/unraid-unspy">
+
+  <CHANGES>
+    ## &version;
+    - Initial Unraid 7 compatible plugin install via PLG
+  </CHANGES>
+
+  <FILE Name="&plugdir;/plugin.json">
+    <URL>https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/plugin.json</URL>
+  </FILE>
+
+  <FILE Name="&plugdir;/unspy.page">
+    <URL>https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/unspy.page</URL>
+  </FILE>
+
+  <FILE Name="&plugdir;/scripts/log_stats.sh" Mode="0755">
+    <URL>https://raw.githubusercontent.com/MrYoshii/unraid-unspy/main/scripts/log_stats.sh</URL>
+  </FILE>
+
+</PLUGIN>
