@@ -12,19 +12,30 @@
 
 <PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="7.0.0" support="https://github.com/MrYoshii/unraid-unspy" icon="area-chart">
 
-<CHANGES>
-### &version;
-- Initial txz-based installer using scrubber-style layout
-</CHANGES>
+  <CHANGES>
+  ### &version;
+  - Initial txz-based installer using scrubber-style layout
+  </CHANGES>
 
-<FILE Run="/bin/bash">
-<INLINE>
-rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
-</INLINE>
-</FILE>
+  <FILE Run="/bin/bash">
+  <INLINE>
+  rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
+  </INLINE>
+  </FILE>
 
-<FILE Name="&plugin;/&name;-&version;.txz" Run="upgradepkg --install-new">
-  <URL>&gitURL;/&name;-&version;.txz</URL>
-</FILE>
+  <FILE Name="&plugin;/&name;-&version;.txz" Run="upgradepkg --install-new">
+    <URL>&gitURL;/&name;-&version;.txz</URL>
+  </FILE>
+
+  <FILE Run="/bin/bash" Method="remove">
+  <INLINE>
+  # Entferne Plugin-Dateien
+  rm -rf /usr/local/emhttp/plugins/unspy
+  rm -rf /boot/config/plugins/unspy
+
+  # Entferne Systempaket (falls registriert)
+  removepkg unspy 2>/dev/null || true
+  </INLINE>
+  </FILE>
 
 </PLUGIN>
