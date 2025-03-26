@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "unspy">
   <!ENTITY author    "MrYoshii">
-  <!ENTITY version   "0.1.5">
+  <!ENTITY version   "0.1.6">
   <!ENTITY md5       "SKIP">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/raw/main">
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
@@ -10,7 +10,7 @@
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
 
-<PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="7.0.0" support="https://github.com/MrYoshii/unraid-unspy" icon="area-chart">
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="7.0.0" support="https://github.com/MrYoshii/unraid-unspy" icon="area-chart">
 
   <CHANGES>
   ### &version;
@@ -20,13 +20,16 @@
   <!-- Clean up old versions -->
   <FILE Run="/bin/bash">
   <INLINE>
-  rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
+  rm -f $(ls &plugin;/&name;-*.zip 2>/dev/null | grep -v '&version;')
   </INLINE>
   </FILE>
 
-  <!-- Install current TXZ -->
-  <FILE Name="&plugin;/&name;-&version;.txz" Run="upgradepkg --install-new">
-    <URL>&gitURL;/&name;-&version;.txz</URL>
+  <!-- Install current ZIP -->
+  <FILE Name="&plugin;/&name;-&version;.zip" Run="/bin/bash">
+  <INLINE>
+  unzip -o &plugin;/&name;-&version;.zip -d /
+  </INLINE>
+    <URL>&gitURL;/&name;-&version;.zip</URL>
   </FILE>
 
   <!-- Plugin uninstall clean-up -->
@@ -35,7 +38,6 @@
   rm -rf /usr/local/emhttp/plugins/&name;
   rm -rf /boot/config/plugins/&name;
   removepkg &name;-&version; 2>/dev/null || true
-
   </INLINE>
   </FILE>
 
