@@ -14,22 +14,26 @@
 
   <CHANGES>
   ### &version;
-  - Install ZIP package instead of TXZ; updated unzip command with quotes.
+  - Updated installer: ZIP is downloaded separately, unzip command is run via an external script.
   </CHANGES>
 
-  <!-- Clean up old versions -->
+  <!-- Clean up old ZIPs -->
   <FILE Run="/bin/bash">
   <INLINE>
   rm -f $(ls &plugin;/&name;-*.zip 2>/dev/null | grep -v '&version;')
   </INLINE>
   </FILE>
 
-  <!-- Install current ZIP with quoted path -->
-  <FILE Name="&plugin;/&name;-&version;.zip" Run="/bin/bash">
-    <INLINE>
-    unzip -o "&plugin;/&name;-&version;.zip" -d /
-    </INLINE>
+  <!-- Download current ZIP file (without executing it) -->
+  <FILE Name="&plugin;/&name;-&version;.zip">
     <URL>&gitURL;/&name;-&version;.zip</URL>
+  </FILE>
+
+  <!-- Run the unzip command using a separate script -->
+  <FILE Name="/tmp/unspy_install.sh" Run="/bin/bash">
+  <INLINE>
+  cd / && unzip -o "&plugin;/&name;-&version;.zip" -d /
+  </INLINE>
   </FILE>
 
   <!-- Plugin uninstall clean-up -->
