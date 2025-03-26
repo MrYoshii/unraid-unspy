@@ -10,18 +10,18 @@
   <!ENTITY emhttp    "/usr/local/emhttp/plugins/&name;">
 ]>
 
-<PLUGIN  name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="7.0.0" support="https://github.com/MrYoshii/unraid-unspy" icon="area-chart">
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;" min="7.0.0" support="https://github.com/MrYoshii/unraid-unspy" icon="area-chart">
 
   <CHANGES>
   ### &version;
-  - Added persistent Unspy.page to enable top-level UnSPY menu entry
+  - Initial TXZ-based installer using scrubber-style layout
   </CHANGES>
 
   <!-- Clean up old versions -->
   <FILE Run="/bin/bash">
-  <INLINE>
-  rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
-  </INLINE>
+    <![CDATA[
+      rm -f $(ls &plugin;/&name;-*.txz 2>/dev/null | grep -v '&version;')
+    ]]>
   </FILE>
 
   <!-- Install current TXZ -->
@@ -31,12 +31,11 @@
 
   <!-- Plugin uninstall clean-up -->
   <FILE Run="/bin/bash" Method="remove">
-  <INLINE>
-  rm -rf /usr/local/emhttp/plugins/&name;
-  rm -rf /boot/config/plugins/&name;
-  removepkg &name;-&version; 2>/dev/null || true
-
-  </INLINE>
+    <![CDATA[
+      rm -rf /usr/local/emhttp/plugins/&name;
+      rm -rf /boot/config/plugins/&name;
+      removepkg &name;-&version; 2>/dev/null || true
+    ]]>
   </FILE>
 
 </PLUGIN>
