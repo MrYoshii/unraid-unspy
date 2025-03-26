@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Page>
+  <Title>Unspy</Title>
+  <Menu>Settings</Menu>
+  <Tab>Overview</Tab>
+  <Category>settings</Category>
+  <Content>
+    <p>🎉 Unspy is now working on Unraid 7!</p>
+  </Content>
+</Page>
