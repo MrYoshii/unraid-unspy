@@ -2,7 +2,7 @@
 <!DOCTYPE PLUGIN [
   <!ENTITY name      "unspy">
   <!ENTITY author    "MrYoshii">
-  <!ENTITY version   "0.1.2">
+  <!ENTITY version   "0.1.3">
   <!ENTITY md5       "SKIP">
   <!ENTITY gitURL    "https://github.com/&author;/unraid-&name;/raw/main">
   <!ENTITY pluginURL "&gitURL;/&name;.plg">
